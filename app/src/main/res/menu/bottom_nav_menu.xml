@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/map"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:id="@+id/mapsFragment"/>
+    <item android:title="@string/evs"
+        android:icon="@drawable/ic_baseline_electric_car_24"
+        android:id="@+id/EVsFragment"/>
+    <item android:title="@string/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:id="@+id/profileFragment"/>
+</menu>
