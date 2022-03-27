@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "102405258519",
+    "project_id": "electrick-132f7",
+    "storage_bucket": "electrick-132f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102405258519:android:7d935b187cc2cb99a3cb52",
+        "android_client_info": {
+          "package_name": "com.example.electrick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102405258519-o9akqj9vk1gpcpantcrhahpueudehfje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPFC53MyCh-wVQocJpF_ZRUwymy1oiMOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102405258519-o9akqj9vk1gpcpantcrhahpueudehfje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
