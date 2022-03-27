@@ -3,19 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".Dummyragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="User profile" />
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLogOut"
-        android:text="Log out"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="20dp"/>
+        android:text="@string/hello_blank_fragment" />
+
 </FrameLayout>
