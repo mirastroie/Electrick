@@ -44,8 +44,10 @@
         android:layout_height="wrap_content"
         android:onClick="goToRegister"
         android:text="Sign up"/>
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_with_google_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <androidx.fragment.app.FragmentContainerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container_view_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.electrick.SignInGoogleProviderFragment" />
 </androidx.appcompat.widget.LinearLayoutCompat>

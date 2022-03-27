@@ -11,7 +11,9 @@
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_up.xml" value="0.13958333333333334" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_dummy.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_in_google_provider.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_out.xml" value="0.1" />
       </map>
     </option>

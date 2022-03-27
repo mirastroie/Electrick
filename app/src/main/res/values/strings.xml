@@ -16,4 +16,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sign_in">SignIn</string>
     <string name="google_web_client_id">102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com</string>
+    <string name="google_web_client_id_2">102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com</string>
+    <string name="google_web_client_id_3">102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com</string>
+    <string name="google_web_id">102405258519-48hr84169d350galti5tivvg13ehbnod.apps.googleusercontent.com</string>
 </resources>

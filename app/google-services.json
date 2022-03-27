@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.electrick",
+            "certificate_hash": "643388f28ba97a46a523212c82f8e6608f39e700"
+          }
+        },
+        {
           "client_id": "102405258519-o9akqj9vk1gpcpantcrhahpueudehfje.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "102405258519-o9akqj9vk1gpcpantcrhahpueudehfje.apps.googleusercontent.com",
+              "client_id": "102405258519-48hr84169d350galti5tivvg13ehbnod.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
