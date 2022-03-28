@@ -3,8 +3,10 @@ package com.example.electrick;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,17 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsFragment extends Fragment {
-
+    private FirebaseFirestore db;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -53,5 +63,34 @@ public class MapsFragment extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TO DO: for each car load its model and WAIT for the response from firestore
+        db = FirebaseFirestore.getInstance();
+        db.collection("cars")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<EV> EVs = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                EV ev = new EV();
+                                ev.setCapacity(document.getDouble("capacity"));
+                                // set location
+                                String modelId = document.getString("model");
+                                ev.setId(document.getId());
+                                // we have to call async load Model from database with modelId
+                                EVs.add(ev);
+
+                            }
+                        } else {
+                            //Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
     }
 }

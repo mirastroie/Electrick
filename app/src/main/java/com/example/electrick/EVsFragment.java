@@ -2,57 +2,56 @@ package com.example.electrick;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EVsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EVsFragment extends Fragment {
+public class EVsFragment extends Fragment{
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private FirebaseFirestore db;
+    private List<Model> models;
+    private ModelAdapter modelAdapter;
+    private RecyclerView modelRV;
+    private ModelAdapter.RecyclerViewClickListener listener;
     public EVsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EVsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static EVsFragment newInstance(String param1, String param2) {
         EVsFragment fragment = new EVsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,5 +59,53 @@ public class EVsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_e_vs, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        modelRV = getView().findViewById(R.id.modelRV);
+        db = FirebaseFirestore.getInstance();
+        models = new ArrayList<>();
+        modelRV.setHasFixedSize(true);
+        modelRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setOnClickListener();
+        modelAdapter = new ModelAdapter(models, listener);
+        modelRV.setAdapter(modelAdapter);
+
+        db.collection("models")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Model m = new Model();
+                                m.setSeats(document.getDouble("seats"));
+                                m.setBrand(document.getString("brand"));
+                                m.setName(document.getString("name"));
+                                m.setPhoto(document.getString("photo"));
+                                m.setRange(document.getDouble("range"));
+                                m.setId(document.getId());
+                                m.setFeatures((List<String>)document.get("features"));
+                                Log.d("tagexp", document.getId() + " => " + document.getData());
+                                models.add(m);
+                            }
+                             modelAdapter.notifyDataSetChanged();
+                        } else {
+                           // Toast.makeText(.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    private void setOnClickListener(){
+        listener = new ModelAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                // we change the fragment
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("model_key", models.get(position));
+                Navigation.findNavController(view).navigate(R.id.action_EVsFragment_to_modelDetailFragment, bundle);
+            }
+        };
     }
 }

@@ -3,18 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EVsFragment"
-    >
+    tools:context=".EVDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Where we will display info about particular evs, such
+     as capacity, price and current location -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="EVs models"
-        android:textColor="@color/white"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/modelRV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

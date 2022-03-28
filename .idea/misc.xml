@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_dummy.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -12,9 +13,19 @@
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_up.xml" value="0.13958333333333334" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_dummy.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_dummyragment.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_e_v_detail.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_e_vs.xml" value="0.10507246376811594" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_first.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_first2.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_maps.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_model_detail.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_in_google_provider.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_out.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/model_item.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

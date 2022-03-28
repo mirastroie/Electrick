@@ -14,10 +14,19 @@
         android:id="@+id/EVsFragment"
         android:name="com.example.electrick.EVsFragment"
         android:label="fragment_e_vs"
-        tools:layout="@layout/fragment_e_vs" />
+        tools:layout="@layout/fragment_e_vs" >
+        <action
+            android:id="@+id/action_EVsFragment_to_modelDetailFragment"
+            app:destination="@id/modelDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.electrick.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/modelDetailFragment"
+        android:name="com.example.electrick.ModelDetailFragment"
+        android:label="fragment_model_detail"
+        tools:layout="@layout/fragment_model_detail" />
 </navigation>

@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="User profile" />
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonLogOut"
+        android:text="User profile" />
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Log out"-->
+<!--        android:padding="10dp"-->
+<!--        android:background="@drawable/rounded_corner"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@color/white"/>-->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Log out"
-        android:textSize="24sp"
+        android:id="@+id/buttonLogOut"
+        style="@style/Widget.MaterialComponents.Button"
+        android:textSize="16sp"
         android:textColor="@color/white"
-        android:layout_marginBottom="20dp"/>
-</FrameLayout>
+        app:cornerRadius="18dp"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
