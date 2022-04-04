@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.maps.android.clustering.Cluster;
@@ -38,9 +40,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MapsFragment extends Fragment implements OnMapReadyCallback,ClusterManager.OnClusterClickListener<MapItem>, ClusterManager.OnClusterInfoWindowClickListener<MapItem>, ClusterManager.OnClusterItemClickListener<MapItem>, ClusterManager.OnClusterItemInfoWindowClickListener<MapItem>  {
+public class MapsFragment extends Fragment implements OnMapReadyCallback,ClusterManager.OnClusterClickListener<EV>, ClusterManager.OnClusterInfoWindowClickListener<EV>, ClusterManager.OnClusterItemClickListener<EV>, ClusterManager.OnClusterItemInfoWindowClickListener<EV>  {
     private FirebaseFirestore db;
     private static final String TAG = MapsFragment.class.getSimpleName();
+    private ClusterManager<EV> clusterManager;
+    private GoogleMap mMap;
+    private ArrayList<EV> EVs;
+    private ModelAdapter modelAdapter;
+    private RecyclerView modelRV;
+    private ModelAdapter.RecyclerViewClickListener listener;
 
 
         /**
@@ -53,14 +61,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
          * user has installed Google Play services and returned to the app.
          */
 
-        private ClusterManager<MapItem> clusterManager;
-        private GoogleMap mMap;
+
+
 
         @Override
-        public boolean onClusterClick(Cluster<MapItem> cluster) {
+        public boolean onClusterClick(Cluster<EV> cluster) {
 
-            String title = cluster.getItems().iterator().next().getTitle();
-            Toast.makeText(getContext(), cluster.getSize() + " (including " + title + ")", Toast.LENGTH_SHORT).show();
 
             LatLngBounds.Builder builder = LatLngBounds.builder();
             for (ClusterItem item : cluster.getItems()) {
@@ -70,7 +76,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             final LatLngBounds bounds = builder.build();
 
             try {
-                getMap().animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+                getMap().animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 300,300,0));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,18 +89,18 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
     }
 
     @Override
-        public void onClusterInfoWindowClick(Cluster<MapItem> cluster) {
+        public void onClusterInfoWindowClick(Cluster<EV> cluster) {
             // Does nothing, but you could go to a list of the users.
         }
 
         @Override
-        public boolean onClusterItemClick(MapItem item) {
+        public boolean onClusterItemClick(EV item) {
             // Does nothing, but you could go into the user's profile page, for example.
             return false;
         }
 
         @Override
-        public void onClusterItemInfoWindowClick(MapItem item) {
+        public void onClusterItemInfoWindowClick(EV item) {
             // Does nothing, but you could go into the user's profile page, for example.
         }
 
@@ -103,7 +109,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             LatLng bucharest = new LatLng(44.43225, 26.10626);
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(bucharest, 11));
 
-            clusterManager = new ClusterManager<MapItem>(context, map);
+            clusterManager = new ClusterManager<EV>(context, map);
 
             clusterManager.setRenderer(new MarkerClusterRenderer(getContext(), map, clusterManager));
 
@@ -115,32 +121,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             clusterManager.setOnClusterItemClickListener(this);
             clusterManager.setOnClusterItemInfoWindowClickListener(this);
 
-            // Add cluster items (markers) to the cluster manager.
-            addItems();
             clusterManager.cluster();
         }
 
 
-        private void addItems() {
-
-            // Set some lat/lng coordinates to start with.
-            double lat = 44.43225;
-            double lng = 26.10626;
-
-            // Add ten cluster items in close proximity, for purposes of this example.
-            for (int i = 0; i < 10; i++) {
-                double offset = i / 60d;
-                lat = lat + offset;
-                lng = lng + offset;
-                MapItem offsetItem = new MapItem(lat, lng, "Title " + i, "Snippet " + i);
-                clusterManager.addItem(offsetItem);
-            }
-        }
 
 
         @Override
-
         public void onMapReady(GoogleMap googleMap) {
+            mMap = googleMap;
             try {
 
                 boolean success = googleMap.setMapStyle(
@@ -152,6 +141,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             } catch (Resources.NotFoundException e) {
                 Log.e(TAG, "Can't find style. Error: ", e);
             }
+
+
 
             setUpClusterer(googleMap,getContext());
         }
@@ -166,6 +157,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        clusterManager.clearItems();
+        clusterManager.cluster();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment =
@@ -173,11 +171,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TO DO: for each car load its model and WAIT for the response from firestore
+
         db = FirebaseFirestore.getInstance();
         db.collection("cars")
                 .get()
@@ -185,22 +179,42 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            ArrayList<EV> EVs = new ArrayList<>();
+                            EVs = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 EV ev = new EV();
                                 ev.setCapacity(document.getDouble("capacity"));
-                                // set location
+                                GeoPoint geoPoint = document.getGeoPoint("location");
+                                LatLng latLng = null;
+                                if (geoPoint != null) {
+                                    latLng = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
+                                }
+                                ev.setLocation(latLng);
                                 String modelId = document.getString("model");
                                 ev.setId(document.getId());
                                 // we have to call async load Model from database with modelId
                                 EVs.add(ev);
 
+                                // add marker on map
+                                addMarker(ev);
+
+
                             }
+                            getMap().animateCamera(CameraUpdateFactory.zoomBy(0.5f));
                         } else {
                             //Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
 
+
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    private void addMarker(EV ev){
+
+        clusterManager.addItem(ev);
     }
 }
