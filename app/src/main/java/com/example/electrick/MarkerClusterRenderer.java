@@ -26,6 +26,7 @@ public class MarkerClusterRenderer extends DefaultClusterRenderer<EV> {
         markerOptions.title(item.getTitle());
     }
 
+
     @Override
     protected boolean shouldRenderAsCluster(Cluster<EV> cluster){
         return cluster.getSize() > 1;

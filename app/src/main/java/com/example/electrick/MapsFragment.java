@@ -6,15 +6,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,6 +31,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -84,20 +91,25 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             return true;
         }
 
-    private GoogleMap getMap() {
+
+
+        private GoogleMap getMap() {
             return mMap;
     }
 
-    @Override
+        @Override
         public void onClusterInfoWindowClick(Cluster<EV> cluster) {
             // Does nothing, but you could go to a list of the users.
         }
 
         @Override
         public boolean onClusterItemClick(EV item) {
-            // Does nothing, but you could go into the user's profile page, for example.
-            return false;
+            getMap().moveCamera(CameraUpdateFactory.newLatLng(item.getPosition()));
+
+            showDialog(item);
+            return true;
         }
+
 
         @Override
         public void onClusterItemInfoWindowClick(EV item) {
@@ -216,5 +228,30 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
     private void addMarker(EV ev){
 
         clusterManager.addItem(ev);
+    }
+
+    private void showDialog(EV item){
+            Dialog dialog = new Dialog(getContext());
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.bottom_popup);
+            dialog.show();
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+//            TextView title = dialog.findViewById(R.id.car_title);
+//            String title_string = item.();
+//            title.setText(title_string);
+
+            TextView battery = dialog.findViewById(R.id.battery);
+            String battery_string = "Battery: " + item.getCapacity() + "%";
+            battery.setText(battery_string);
+
+        TextView location = dialog.findViewById(R.id.location);
+        String location_string = "Location: " + item.getPosition();
+        location.setText(location_string);
+
+
     }
 }
