@@ -22,17 +22,19 @@ public class Model implements Serializable {
     private String name;
     private String photo;
     private Double range;
+    private Double price;
 
     public Model(){
 
     }
-    public Model(String id, String brand, String name, String photo, Double range, Double seats) {
+    public Model(String id, String brand, String name, String photo, Double range, Double seats, Double price) {
         this.id = id;
         this.brand = brand;
         this.name = name;
         this.photo = photo;
         this.range = range;
         this.seats =  seats;
+        this.price = price;
     }
 
     public Double getRange() {
@@ -54,6 +56,8 @@ public class Model implements Serializable {
     public Double getSeats() {
         return seats;
     }
+
+    public double getPrice() {return price;}
 
 
     public void setSeats(Double seats) {
@@ -79,4 +83,6 @@ public class Model implements Serializable {
     public void setRange(Double range) {
         this.range = range;
     }
+
+    public void setPrice(Double price) {this.price = price; }
 }
