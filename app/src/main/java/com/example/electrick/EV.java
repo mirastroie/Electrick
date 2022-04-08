@@ -1,17 +1,23 @@
 package com.example.electrick;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
+
 import java.io.Serializable;
 
-public class EV implements Serializable {
+public class EV implements Serializable, ClusterItem {
     private String id;
     private Double capacity;
-    private String location;
+    private LatLng location;
     private Model model;
 
     public EV() {
 
     }
-    public EV(String id, Double capacity, String location, Model model) {
+    public EV(String id, Double capacity, LatLng location, Model model) {
         this.id = id;
         this.capacity = capacity;
         this.location = location;
@@ -20,10 +26,6 @@ public class EV implements Serializable {
 
     public Double getCapacity() {
         return capacity;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public Model getModel() {
@@ -38,11 +40,29 @@ public class EV implements Serializable {
         this.capacity = capacity;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(LatLng location) {
         this.location = location;
     }
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+    @NonNull
+    @Override
+    public LatLng getPosition() {
+        return location;
+    }
+
+    @Nullable
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getSnippet() {
+        return null;
     }
 }

@@ -3,6 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1595" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_electric_car_24.xml" value="0.118" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.15" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_launcher_background.xml" value="0.118" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_marker_icon.xml" value="0.1" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/popup_bg.xml" value="0.1" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/reserve_button_bg.xml" value="0.234" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/bottom_popup.xml" value="0.4" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/bottom_popup_bg.xml" value="0.1" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_dummy.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_dummyragment.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_e_v_detail.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_maps.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_model_detail.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/model_item.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1595" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_dummy.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_login.xml" value="0.1" />

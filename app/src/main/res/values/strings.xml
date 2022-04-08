@@ -19,4 +19,11 @@
     <string name="google_web_client_id_2">102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com</string>
     <string name="google_web_client_id_3">102405258519-ph2vi2in0da6605bcruatd5bn7e8sv6o.apps.googleusercontent.com</string>
     <string name="google_web_id">102405258519-48hr84169d350galti5tivvg13ehbnod.apps.googleusercontent.com</string>
+    <string name="tesla_model_3">Tesla Model 3</string>
+    <string name="battery">Battery: 79%</string>
+    <string name="seats">Seats: 5</string>
+    <string name="range">Range: 547 km</string>
+    <string name="price">Price: 0,59 RON/min</string>
+    <string name="reserve">Reserve</string>
+    <string name="location">Location:</string>
 </resources>
