@@ -100,7 +100,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
 
         @Override
         public void onClusterInfoWindowClick(Cluster<EV> cluster) {
-            // Does nothing, but you could go to a list of the users.
+
         }
 
         @Override
@@ -114,7 +114,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
 
         @Override
         public void onClusterItemInfoWindowClick(EV item) {
-            // Does nothing, but you could go into the user's profile page, for example.
+
         }
 
 
