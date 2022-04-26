@@ -85,8 +85,11 @@ public class EVsFragment extends Fragment{
                                 m.setName(document.getString("name"));
                                 m.setPhoto(document.getString("photo"));
                                 m.setRange(document.getDouble("range"));
+                                m.setPrice(document.getDouble("price"));
                                 m.setId(document.getId());
                                 m.setFeatures((List<String>)document.get("features"));
+                                m.setProfileBg(document.getString("profileBg"));
+                                m.setOverview(document.getString("overview"));
                                 Log.d("tagexp", document.getId() + " => " + document.getData());
                                 models.add(m);
                             }

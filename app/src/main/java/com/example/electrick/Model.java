@@ -21,8 +21,18 @@ public class Model implements Serializable {
     private String id;
     private String name;
     private String photo;
+    private String profileBg;
     private Double range;
     private Double price;
+    private String overview;
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
 
     public Model(){
 
@@ -48,6 +58,8 @@ public class Model implements Serializable {
     public String getPhoto() {
         return photo;
     }
+
+    public String getProfileBg(){return profileBg;}
 
     public String getName() {
         return name;
@@ -79,6 +91,8 @@ public class Model implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public void setProfileBg(String profileBg) { this.profileBg = profileBg;}
 
     public void setRange(Double range) {
         this.range = range;

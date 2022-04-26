@@ -3,48 +3,66 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1595" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_electric_car_24.xml" value="0.118" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.15" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_launcher_background.xml" value="0.118" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/ic_marker_icon.xml" value="0.1" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/popup_bg.xml" value="0.1" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/drawable/reserve_button_bg.xml" value="0.234" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/bottom_popup.xml" value="0.4" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/bottom_popup_bg.xml" value="0.1" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_dummy.xml" value="0.2078804347826087" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_dummyragment.xml" value="0.2078804347826087" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_e_v_detail.xml" value="0.21467391304347827" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_maps.xml" value="0.2368659420289855" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/fragment_model_detail.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/layout/model_item.xml" value="0.2078804347826087" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="..\:/Users/40740/Desktop/Electrick/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1595" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/buttonradius.xml" value="0.1505" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/drawblerounded.xml" value="0.1175" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_arrow_right_md.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_electric_car_24.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_people_20.xml" value="0.1505" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_person_50.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_baseline_terrain_50.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_bg_background.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_bluetooth.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_calendar.xml" value="0.204" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_clock.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_credit_card_01.xml" value="0.1175" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_credit_card_02.xml" value="0.204" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_gearbox.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_map.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_map_pin.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_marker_icon.xml" value="0.116" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_navigation.xml" value="0.116" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_share_android.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_spotify_brands.xml" value="0.116" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_sun.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_user.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_users.xml" value="0.1435" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/ic_users_group.xml" value="0.1435" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/popup_bg.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/round_corner.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_dummy.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_get_started.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_register.xml" value="0.10677083333333333" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_register.xml" value="0.21818181061547676" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/content_sign_up.xml" value="0.13958333333333334" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/feature_item.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_dummy.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_dummyragment.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_e_v_detail.xml" value="0.1" />
-        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_e_vs.xml" value="0.10507246376811594" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_e_vs.xml" value="0.18327272091700048" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_first2.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_maps.xml" value="0.1" />
-        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_model_detail.xml" value="0.1" />
-        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_model_detail.xml" value="0.21818181061547676" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_profile.xml" value="0.4363636212309535" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_in_google_provider.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/fragment_sign_out.xml" value="0.1" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/model_item.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/layout/rental_item.xml" value="0.12228260869565218" />
         <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/mira/AndroidStudioProjects/electrick/app/src/main/res/mipmap-anydpi-v26/ic_car.xml" value="0.1505" />
       </map>
     </option>
   </component>

@@ -12,7 +12,11 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"/>
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="#040405"
+        android:textSize="20sp"
+        android:text="Sign In"
+        android:layout_marginBottom="30dp"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -26,28 +30,66 @@
         android:inputType="textPassword"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignIn"
+        style="@style/themeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="#040405"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
         android:text="Sign in"/>
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Do you not have an account?"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToRegister"
-        android:text="Sign up"/>
-    <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container_view_2"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:text="Do you not have an account?"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToRegister"
+            android:text="Sign up"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#040405"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.electrick.SignInGoogleProviderFragment" />
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#040405"
+            android:fontFamily="@font/rubik_medium"
+            android:text="OR"
+            android:layout_marginBottom="3dp">
+        </androidx.appcompat.widget.AppCompatTextView>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
+
+        <androidx.fragment.app.FragmentContainerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container_view_2"
+            android:name="com.example.electrick.SignInGoogleProviderFragment"
+            android:layout_gravity="center"
+            style="@style/themeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
