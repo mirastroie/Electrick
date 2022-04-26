@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void SendUserToLoginActivity() {
-        Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
+        Intent registerIntent = new Intent(MainActivity.this, GetStartedActivity.class);
         registerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(registerIntent);
     }

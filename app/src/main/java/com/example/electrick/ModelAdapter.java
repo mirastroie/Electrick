@@ -1,12 +1,17 @@
 package com.example.electrick;
 
+import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -21,11 +26,15 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
     }
 
     public class ModelViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private final TextView brand, name;
+        private final TextView name, people;
+        private final ImageView image;
+        private final Context appContext;
         public ModelViewHolder(@NonNull View itemView) {
             super(itemView);
-            brand = (TextView) itemView.findViewById(R.id.brand);
             name = (TextView) itemView.findViewById(R.id.name);
+            people = (TextView) itemView.findViewById(R.id.people);
+            image = (ImageView) itemView.findViewById(R.id.image);
+            appContext = itemView.getContext().getApplicationContext();
             itemView.setOnClickListener(this);
         }
 
@@ -45,8 +54,11 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
     @Override
     public void onBindViewHolder(@NonNull final ModelViewHolder modelViewHolder, final int position) {
         Model model = models.get(position);
-        modelViewHolder.brand.setText(model.getBrand());
-        modelViewHolder.name.setText(model.getName());
+        modelViewHolder.name.setText(String.format("%s %s", model.getBrand(), model.getName()));
+        modelViewHolder.people.setText(String.format("%s Person car ride", model.getSeats().intValue()));
+        Glide.with(modelViewHolder.appContext)
+                .load(model.getPhoto())
+                .into(modelViewHolder.image);
 
     }
     @Override
@@ -54,7 +66,7 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
         return models.size();
     }
 
-    public interface  RecyclerViewClickListener{
+    public interface RecyclerViewClickListener{
         void onClick(View view, int position);
     }
 }
