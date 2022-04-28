@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +54,7 @@ import com.bumptech.glide.Glide;;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback,ClusterManager.OnClusterClickListener<EV>, ClusterManager.OnClusterInfoWindowClickListener<EV>, ClusterManager.OnClusterItemClickListener<EV>, ClusterManager.OnClusterItemInfoWindowClickListener<EV>  {
@@ -279,7 +283,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             battery.setText(battery_string);
 
         TextView seats = dialog.findViewById(R.id.car_seats);
-        String seats_string = String.valueOf(item.getModel().getSeats().intValue()) + " adults";
+        String seats_string = item.getModel().getSeats().intValue() + " adults";
         seats.setText(seats_string);
 
         TextView range = dialog.findViewById(R.id.car_range);
@@ -297,6 +301,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
         Glide.with(dialog.getContext())
                 .load(item.getModel().getPhoto())
                 .into(image);
+
+        Button button  = (Button) dialog.findViewById(R.id.location_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uri ="https://www.google.com/maps/search/?api=1&query=" + item.getPosition().latitude + "%2C" + item.getPosition().longitude;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+
+                startActivity(intent);
+            }
+        });
 
     }
 
