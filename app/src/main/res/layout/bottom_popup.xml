@@ -15,10 +15,14 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="254dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@drawable/carsun"
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,36 +36,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="39dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/rubik"
                 android:gravity="center"
                 android:text="@string/tesla_model_3"
                 android:textAlignment="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/battery"
+                android:textStyle="bold"
+                android:textColor="#040405"
+                android:textSize="17sp"/>
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="9dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/battery"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/car_seats"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/seats"
-                android:textAlignment="center" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/car_range"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/range"
-                android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/battery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_marginRight="5dp"
+                    android:textAlignment="center"
+                    android:textColor="#040405"
+                    android:gravity="center"/>
+
+                <ImageView
+                    style="@style/IconPres"
+                    android:src="@drawable/ic_lighting"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+
+            </LinearLayout>
+
+
+
 
         </LinearLayout>
 
@@ -71,25 +79,101 @@
         android:layout_width="match_parent"
         android:layout_height="27dp" />
 
-    <TextView
-        android:id="@+id/price"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/price"
-        android:textAlignment="center" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="7dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="13dp"
+        android:weightSum="8">
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:gravity="center"
-        android:text="@string/location"
-        android:textAlignment="center" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/IconPres"
+                android:src="@drawable/ic_user" />
+
+            <TextView
+                android:id="@+id/car_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik"
+                android:paddingTop="5dp"
+                android:textAlignment="center"
+                android:textColor="#040405" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/IconPres"
+                android:src="@drawable/ic_map" />
+
+            <TextView
+                android:id="@+id/car_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik"
+                android:paddingTop="5dp"
+                android:textAlignment="center"
+                android:textColor="#040405" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/IconPres"
+                android:src="@drawable/ic_credit_card_01" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik"
+                android:paddingTop="5dp"
+                android:textAlignment="center"
+                android:textColor="#040405" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="27dp" />
+
+    <Button
+        android:id="@+id/location_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/location_text"
+        android:textSize="16sp"
+        app:cornerRadius="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+
+       />
 
     <Button
         android:id="@+id/reserve_button"
@@ -97,5 +181,7 @@
         android:layout_height="70dp"
         android:text="@string/reserve"
         android:textSize="16sp"
-        app:cornerRadius="30dp" />
+        app:cornerRadius="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
 </LinearLayout>

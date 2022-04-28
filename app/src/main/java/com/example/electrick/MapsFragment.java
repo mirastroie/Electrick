@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,9 +50,12 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
+import com.bumptech.glide.Glide;;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.Locale;
+
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback,ClusterManager.OnClusterClickListener<EV>, ClusterManager.OnClusterInfoWindowClickListener<EV>, ClusterManager.OnClusterItemClickListener<EV>, ClusterManager.OnClusterItemInfoWindowClickListener<EV>  {
     private FirebaseFirestore db;
@@ -207,7 +216,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                                 ev.setId(document.getId());
                                 Log.d("modelid",document.getString("model"));
                                 // we have to call async load Model from database with modelId
-                                db.collection("models").document("BP7gPsbDqvIjtfdAwFSg").get().addOnCompleteListener(new OnCompleteListener() {
+                                db.collection("models").document(modelId).get().addOnCompleteListener(new OnCompleteListener() {
 
                                     @Override
                                     public void onComplete(@NonNull Task task) {
@@ -220,6 +229,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                                             model.setRange(documentSnapshot.getDouble("range"));
                                             model.setPrice(documentSnapshot.getDouble("price"));
                                             model.setSeats(documentSnapshot.getDouble("seats"));
+                                            model.setPhoto(documentSnapshot.getString("photo"));
                                             Log.d("modelDetails",  " => " + documentSnapshot.getData());
 
                                             ev.setModel(model);
@@ -263,30 +273,46 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             dialog.getWindow().setGravity(Gravity.BOTTOM);
 
-            TextView title = dialog.findViewById(R.id.car_title);
+
+        TextView title = dialog.findViewById(R.id.car_title);
             String title_string = item.getModel().getBrand() + " " +  item.getModel().getName();
             title.setText(title_string);
 
             TextView battery = dialog.findViewById(R.id.battery);
-            String battery_string = "Battery: " + item.getCapacity() + "%";
+            String battery_string = item.getCapacity() + "%";
             battery.setText(battery_string);
 
         TextView seats = dialog.findViewById(R.id.car_seats);
-        String seats_string = "Seats: " + item.getModel().getSeats().intValue();
+        String seats_string = item.getModel().getSeats().intValue() + " adults";
         seats.setText(seats_string);
 
         TextView range = dialog.findViewById(R.id.car_range);
-        String range_string = "Range: " + item.getModel().getRange() + " km";
+        String range_string = item.getModel().getRange() + " km";
         range.setText(range_string);
 
         TextView price = dialog.findViewById(R.id.price);
-        String price_string = "Price: " +  item.getModel().getPrice() + " RON/min";
+        String price_string = item.getModel().getPrice() + " RON/min";
         price.setText(price_string);
 
-        TextView location = dialog.findViewById(R.id.location);
-        String location_string = "Location: " + item.getPosition();
-        location.setText(location_string);
 
+
+        ImageView image = dialog.findViewById(R.id.imageView);
+
+        Glide.with(dialog.getContext())
+                .load(item.getModel().getPhoto())
+                .into(image);
+
+        Button button  = (Button) dialog.findViewById(R.id.location_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String uri ="https://www.google.com/maps/search/?api=1&query=" + item.getPosition().latitude + "%2C" + item.getPosition().longitude;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+
+                startActivity(intent);
+            }
+        });
 
     }
+
 }
