@@ -34,8 +34,8 @@
             <TextView
                 android:id="@+id/car_title"
                 android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/rubik"
                 android:gravity="center"
                 android:text="@string/tesla_model_3"
@@ -46,7 +46,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
                     android:id="@+id/battery"
