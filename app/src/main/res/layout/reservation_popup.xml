@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup_bg">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/after"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/success_message"
+            android:fontFamily="@font/rubik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="@string/reservation_completed"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/bg_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="5dp"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/backcar"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"/>
+
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:id="@+id/close_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="@string/close"
+            android:textSize="16sp"
+            app:cornerRadius="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/before"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+
+            android:id="@+id/duration_label"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/rubik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="@string/label_duration"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/duration_snd_label"
+            android:fontFamily="@font/rubik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/snd_label_duration"
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+        <EditText
+            android:id="@+id/reservation_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="228dp" />
+
+        <TextView
+            android:id="@+id/error_message"
+            android:fontFamily="@font/rubik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textAlignment="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+        <Button
+            android:id="@+id/reserve_button_2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="@string/reserve"
+            android:textSize="16sp"
+            app:cornerRadius="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>

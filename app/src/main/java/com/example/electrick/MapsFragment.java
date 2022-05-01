@@ -2,45 +2,46 @@ package com.example.electrick;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.opengl.Visibility;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -50,11 +51,13 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
-import com.bumptech.glide.Glide;;
-import java.io.InputStream;
-import java.net.URL;
+import com.bumptech.glide.Glide;
+import com.google.type.DateTime;;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback,ClusterManager.OnClusterClickListener<EV>, ClusterManager.OnClusterInfoWindowClickListener<EV>, ClusterManager.OnClusterItemClickListener<EV>, ClusterManager.OnClusterItemInfoWindowClickListener<EV>  {
@@ -195,7 +198,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
         }
 
         db = FirebaseFirestore.getInstance();
-        db.collection("cars")
+        db.collection("cars").whereEqualTo("available", true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -205,7 +208,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("car", document.getId() + " => " + document);
                                 EV ev = new EV();
-                                ev.setCapacity(document.getDouble("capacity"));
+                                ev.setId(document.getId());
+                                ev.setBattery(document.getDouble("battery"));
                                 GeoPoint geoPoint = document.getGeoPoint("location");
                                 LatLng latLng = null;
                                 if (geoPoint != null) {
@@ -279,7 +283,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             title.setText(title_string);
 
             TextView battery = dialog.findViewById(R.id.battery);
-            String battery_string = item.getCapacity() + "%";
+            String battery_string = item.getBattery() + "%";
             battery.setText(battery_string);
 
         TextView seats = dialog.findViewById(R.id.car_seats);
@@ -310,6 +314,100 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 
                 startActivity(intent);
+            }
+        });
+
+        Button buttonR  = (Button) dialog.findViewById(R.id.reserve_button);
+        buttonR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog2 = new Dialog(getContext());
+                dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog2.setContentView(R.layout.reservation_popup);
+                dialog2.show();
+                dialog2.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog2.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                dialog2.getWindow().setGravity(Gravity.BOTTOM);
+
+                EditText minutes = dialog2.findViewById(R.id.reservation_duration);
+                TextView error_message = dialog2.findViewById(R.id.error_message);
+
+                Button buttonR2  = (Button) dialog2.findViewById(R.id.reserve_button_2);
+                buttonR2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Editable value = minutes.getText();
+
+                        if (value.toString().equals("")){
+                            String message = "Duration field cannot be empty";
+                            error_message.setText(message);
+                        }
+                        else if (Integer.parseInt(value.toString()) > 360){
+                            String message = "The reservation duration cannot be longer than 360 minutes";
+                            error_message.setText(message);
+                        }
+                        else {
+                            //get car data from firebase to check if the selected car is still available
+                            db.collection("cars").document(item.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot documentSnapshot = (DocumentSnapshot) task.getResult();
+                                        boolean available = documentSnapshot.getBoolean("available");
+                                        if (available){
+                                            //if available save reservation in firebase and set the car as unavailable
+                                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                            int duration = Integer.parseInt(value.toString());
+                                            double price = item.getModel().getPrice() * duration;
+                                            Timestamp localDateTime = Timestamp.now();
+
+                                            Map<String, Object> data = new HashMap<>();
+                                            data.put("date", localDateTime);
+                                            data.put("duration", duration);
+                                            data.put("ev", item.getId());
+                                            data.put("totalPrice", price);
+                                            data.put("user", user.getUid());
+
+                                            db.collection("rentals").add(data);
+                                            db.collection("cars").document(item.getId()).update("available",false);
+
+
+                                            //show successful reservation screen
+                                            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            if(ViewCompat.getRootWindowInsets(getView()).isVisible(WindowInsetsCompat.Type.ime())){
+                                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                                            }
+
+                                            dialog2.findViewById(R.id.before).setVisibility(View.GONE);
+                                            dialog2.findViewById(R.id.after).setVisibility(View.VISIBLE);
+
+                                            dialog2.findViewById(R.id.close_button).setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    dialog2.dismiss();
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+
+                                        }
+                                        else{
+                                            //if not available show error message
+                                            String message = "The car you selected is no longer available. Please choose another car";
+                                            error_message.setText(message);
+                                        }
+                                    }
+                                }
+                            });
+
+
+
+                        }
+
+                    }
+                });
+
             }
         });
 

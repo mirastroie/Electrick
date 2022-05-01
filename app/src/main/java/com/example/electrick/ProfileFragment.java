@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +129,7 @@ public class ProfileFragment extends Fragment {
                                         if(task.isSuccessful()) {
                                             DocumentSnapshot documentSnapshot = (DocumentSnapshot) task.getResult();
                                             EV ev = new EV();
-                                            ev.setCapacity(documentSnapshot.getDouble("capacity"));
+                                            ev.setBattery(documentSnapshot.getDouble("capacity"));
                                             GeoPoint geoPoint = documentSnapshot.getGeoPoint("location");
                                             LatLng latLng = null;
                                             if (geoPoint != null) {
