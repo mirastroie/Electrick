@@ -28,5 +28,5 @@
         android:id="@+id/modelDetailFragment"
         android:name="com.example.electrick.ModelDetailFragment"
         android:label="fragment_model_detail"
-        tools:layout="@layout/fragment_model_detail" />
+        tools:layout="@layout/fragment_model_detail"/>
 </navigation>

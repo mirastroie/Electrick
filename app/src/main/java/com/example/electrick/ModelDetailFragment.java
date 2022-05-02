@@ -1,6 +1,8 @@
 package com.example.electrick;
 
+import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -35,7 +37,7 @@ public class ModelDetailFragment extends Fragment {
     private List<String> features;
     TextView name, range, seats, price, overview;
     ImageView image;
-    private MaterialButton backButton;
+    private MaterialButton backButton, shareButton;
     public ModelDetailFragment() {
         // Required empty public constructor
     }
@@ -93,5 +95,21 @@ public class ModelDetailFragment extends Fragment {
         features = model.getFeatures();
         featureAdapter = new FeatureAdapter(features);
         featureRv.setAdapter(featureAdapter);
+
+        shareButton = getView().findViewById(R.id.buttonShare);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+
+                sendIntent.putExtra(Intent.EXTRA_TEXT,"electrick://electrick.com/model");
+
+                sendIntent.setType("text/plain");
+
+//
+                startActivity(Intent.createChooser(sendIntent, "Share using"));
+
+            }
+        });
     }
 }
