@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:text="@string/reservation"
             android:textColor="#000"
+            android:layout_marginBottom="10dp"
             android:textStyle="bold" />
 
         <!-- TextView for Body -->

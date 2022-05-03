@@ -5,9 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDeepLinkBuilder;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -42,6 +45,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -69,6 +73,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
     private ModelAdapter modelAdapter;
     private RecyclerView modelRV;
     private ModelAdapter.RecyclerViewClickListener listener;
+
 
 
         /**
@@ -369,26 +374,39 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                                             data.put("totalPrice", price);
                                             data.put("user", user.getUid());
 
-                                            db.collection("rentals").add(data);
-                                            db.collection("cars").document(item.getId()).update("available",false);
-
-
-                                            //show successful reservation screen
-                                            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                            if(ViewCompat.getRootWindowInsets(getView()).isVisible(WindowInsetsCompat.Type.ime())){
-                                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-                                            }
-
-                                            dialog2.findViewById(R.id.before).setVisibility(View.GONE);
-                                            dialog2.findViewById(R.id.after).setVisibility(View.VISIBLE);
-
-                                            dialog2.findViewById(R.id.close_button).setOnClickListener(new View.OnClickListener() {
+                                            db.collection("rentals").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                 @Override
-                                                public void onClick(View view) {
-                                                    dialog2.dismiss();
-                                                    dialog.dismiss();
+                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                    if (task.isSuccessful()){
+                                                        db.collection("cars").document(item.getId()).update("available",false);
+
+                                                        PendingIntent pendingIntent = new NavDeepLinkBuilder(getContext())
+                                                                .setGraph(R.navigation.nav_component)
+                                                                .setDestination(R.id.profileFragment)
+                                                                .createPendingIntent();
+                                                        FirebaseMessageReceiver firebaseMessageReceiver = new FirebaseMessageReceiver();
+                                                        firebaseMessageReceiver.showNotification("Reservation completed", "Click here to go to your profile", pendingIntent, getContext());
+
+                                                        //show successful reservation screen
+                                                        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                        if(ViewCompat.getRootWindowInsets(getView()).isVisible(WindowInsetsCompat.Type.ime())){
+                                                            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                                                        }
+
+                                                        dialog2.findViewById(R.id.before).setVisibility(View.GONE);
+                                                        dialog2.findViewById(R.id.after).setVisibility(View.VISIBLE);
+
+                                                        dialog2.findViewById(R.id.close_button).setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                dialog2.dismiss();
+                                                                dialog.dismiss();
+                                                            }
+                                                        });
+                                                    }
                                                 }
                                             });
+
 
 
                                         }
