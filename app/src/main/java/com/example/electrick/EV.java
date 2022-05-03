@@ -10,22 +10,22 @@ import java.io.Serializable;
 
 public class EV implements Serializable, ClusterItem {
     private String id;
-    private Double capacity;
+    private Double battery;
     private LatLng location;
     private Model model;
 
     public EV() {
 
     }
-    public EV(String id, Double capacity, LatLng location, Model model) {
+    public EV(String id, Double battery, LatLng location, Model model) {
         this.id = id;
-        this.capacity = capacity;
+        this.battery = battery;
         this.location = location;
         this.model = model;
     }
 
-    public Double getCapacity() {
-        return capacity;
+    public Double getBattery() {
+        return battery;
     }
 
     public Model getModel() {
@@ -36,8 +36,8 @@ public class EV implements Serializable, ClusterItem {
         this.id = id;
     }
 
-    public void setCapacity(Double capacity) {
-        this.capacity = capacity;
+    public void setBattery(Double battery) {
+        this.battery = battery;
     }
 
     public void setLocation(LatLng location) {
@@ -64,5 +64,9 @@ public class EV implements Serializable, ClusterItem {
     @Override
     public String getSnippet() {
         return null;
+    }
+
+    public String getId() {
+        return id;
     }
 }

@@ -26,6 +26,9 @@
     <string name="price">Price: 0,59 RON/min</string>
     <string name="reserve">Reserve</string>
     <string name="location">Location:</string>
-    <string name="reservation">Reservation</string>
-    <string name="reservation_message">You have a reservation in less than 15 minutes</string>
+    <string name="location_text">Location</string>
+    <string name="snd_label_duration">The estimated duration of your reservation in minutes</string>
+    <string name="label_duration">Duration</string>
+    <string name="close">Close</string>
+    <string name="reservation_completed">Reservation completed</string>
 </resources>

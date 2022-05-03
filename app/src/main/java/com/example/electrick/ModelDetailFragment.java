@@ -1,14 +1,25 @@
 package com.example.electrick;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +30,12 @@ public class ModelDetailFragment extends Fragment {
 
     private static final String MODEL_KEY = "model_key";
     private Model model;
-    TextView name, brand, range, seats;
+    private FeatureAdapter featureAdapter;
+    private RecyclerView featureRv;
+    private List<String> features;
+    TextView name, range, seats, price, overview;
+    ImageView image;
+    private MaterialButton backButton;
     public ModelDetailFragment() {
         // Required empty public constructor
     }
@@ -47,12 +63,35 @@ public class ModelDetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         name = (TextView) getView().findViewById(R.id.name);
-        brand= (TextView) getView().findViewById(R.id.brand);
         range = (TextView) getView().findViewById(R.id.range);
         seats = (TextView) getView().findViewById(R.id.seats);
-        name.setText(model.getName());
-        brand.setText(model.getBrand());
-        range.setText(model.getRange().toString());
-        seats.setText(model.getSeats().toString());
+        image = (ImageView) getView().findViewById(R.id.bg);
+        price = (TextView) getView().findViewById(R.id.price);
+        overview = (TextView) getView().findViewById(R.id.overview);
+        backButton = (MaterialButton) getView().findViewById(R.id.buttonBack);
+        name.setText(String.format("%s %s", model.getBrand(), model.getName()));
+        range.setText(String.format("%s km", model.getRange()));
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //getFragmentManager().popBackStack();
+                getActivity().onBackPressed();
+            }
+        });
+//        range.setText(String.format("%s km\nrange", model.getRange()));
+        overview.setText(model.getOverview());
+        seats.setText(String.format("%s adults", model.getSeats().intValue()));
+        price.setText(String.format("%s RON/min", model.getPrice()));
+        Glide.with(getView().getContext().getApplicationContext())
+                .load(model.getProfileBg())
+                .into(image);
+
+        featureRv = getView().findViewById(R.id.featureRV);
+        featureRv.setHasFixedSize(true);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        featureRv.setLayoutManager(layoutManager);
+        features = model.getFeatures();
+        featureAdapter = new FeatureAdapter(features);
+        featureRv.setAdapter(featureAdapter);
     }
 }
