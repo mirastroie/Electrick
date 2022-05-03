@@ -31,4 +31,9 @@
     <string name="label_duration">Duration</string>
     <string name="close">Close</string>
     <string name="reservation_completed">Reservation completed</string>
+    <string name="reservation">Title</string>
+    <string name="reservation_message">Message</string>
+    <string name="static_shortcut_label_short">Profile</string>
+    <string name="static_shortcut_label_long">Profile Fragment</string>
+    <string name="static_shortcut_disabled_message">Disabled</string>
 </resources>

@@ -23,7 +23,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.electrick.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="myapp://electrick.com/profile" />
+    </fragment>
     <fragment
         android:id="@+id/modelDetailFragment"
         android:name="com.example.electrick.ModelDetailFragment"
