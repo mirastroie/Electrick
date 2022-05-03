@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="ProfileFragment"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/static_shortcut_label_short"
+        android:shortcutLongLabel="@string/static_shortcut_label_long"
+        android:shortcutDisabledMessage=
+            "@string/static_shortcut_disabled_message"
+        android:icon="@drawable/ic_profile">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="myapp://electrick.com/profile" />
+    </shortcut>
+</shortcuts>
