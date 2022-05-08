@@ -10,7 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +38,7 @@ public class EVsFragment extends Fragment{
     private List<Model> models;
     private ModelAdapter modelAdapter;
     private RecyclerView modelRV;
+    private SearchView searchBar;
     private ModelAdapter.RecyclerViewClickListener listener;
     public EVsFragment() {
         // Required empty public constructor
@@ -71,6 +72,22 @@ public class EVsFragment extends Fragment{
         setOnClickListener();
         modelAdapter = new ModelAdapter(models, listener);
         modelRV.setAdapter(modelAdapter);
+        searchBar = getView().findViewById(R.id.searchBar);
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if(modelAdapter != null)
+                  modelAdapter.getFilter().filter(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(modelAdapter != null)
+                   modelAdapter.getFilter().filter(s);
+                return true;
+            }
+        });
 
         db.collection("models")
                 .get()
@@ -94,6 +111,7 @@ public class EVsFragment extends Fragment{
                                 models.add(m);
                             }
                              modelAdapter.notifyDataSetChanged();
+                             modelAdapter.updateFullModels();
                         } else {
                            // Toast.makeText(.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
                         }
