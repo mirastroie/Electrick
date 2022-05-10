@@ -37,7 +37,11 @@
                 android:text="Brand"
                 android:textColor="#040405"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:scrollHorizontally="false"
+                />
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
