@@ -4,10 +4,9 @@ An electric car sharing app.
 
 Functionalities:
 
-- [ ] Map screen
-- [ ] When pressing on a specific icon, a list of
-a vailable cars is displayed (use recycle view)
-- [ ] The user can click on a car, a new screen is
-displayed containing info about that car
-- [ ] Login/Register
-- [ ] Profile where the user can see which cars she rented
+- [x] Map screen
+- [x] When pressing on a car icon available on the map, a popover with info about that car is displayed
+- [x] The user can browse through the available car models; if she click on a model, a new screen is displayed containing info about it
+- [x] The user can share a model details on socials
+- [x] Login/Register
+- [x] Profile where the user can see which cars she rented
