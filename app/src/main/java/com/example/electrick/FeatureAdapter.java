@@ -1,5 +1,6 @@
 package com.example.electrick;
 
+import android.animation.ObjectAnimator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,14 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.FeatureV
             name = (TextView) itemView.findViewById(R.id.name);
             icon = (ImageView) itemView.findViewById(R.id.icon);
         }
+        public void animate() {
+            ObjectAnimator iconAnimator = ObjectAnimator.ofFloat(icon, "translationX",-500f,0f);
+            ObjectAnimator textAnimator = ObjectAnimator.ofFloat(name, "translationX", -500.0f, 0.f);
+            iconAnimator.setDuration(300);
+            textAnimator.setDuration(300);
+            iconAnimator.start();
+            textAnimator.start();
+        }
     }
 
     @NonNull
@@ -50,6 +59,7 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.FeatureV
         String feature = features.get(position);
         featureViewHolder.name.setText(feature);
         featureViewHolder.icon.setImageResource(icons.get(feature));
+        featureViewHolder.animate();
     }
     @Override
     public int getItemCount() {

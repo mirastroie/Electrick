@@ -118,14 +118,14 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
     public void showNotification(String title,
                                  String message, PendingIntent pendingIntent, Context context) {
         // Pass the intent to switch to the MainActivity
-        Intent intent
-                = new Intent(this, MainActivity.class);
+//        Intent intent
+//                = new Intent(this, MainActivity.class);
         // Assign channel ID
         String channel_id = "notification_channel";
         // Here FLAG_ACTIVITY_CLEAR_TOP flag is set to clear
         // the activities present in the activity stack,
         // on the top of the Activity that is to be launched
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         // Pass the intent to PendingIntent to start the
         // next Activity
 
