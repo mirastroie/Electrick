@@ -61,6 +61,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -101,7 +102,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
             final LatLngBounds bounds = builder.build();
 
             try {
-                getMap().animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 300,300,0));
+                getMap().animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 400,400,0));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -160,6 +161,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
         @Override
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
+
+
+
+
+
             try {
 
                 boolean success = googleMap.setMapStyle(
@@ -220,6 +226,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
                                 if (geoPoint != null) {
                                     latLng = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
                                 }
+
                                 ev.setLocation(latLng);
                                 String modelId = document.getString("model");
                                 ev.setId(document.getId());
@@ -315,10 +322,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,Cluster
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String uri ="https://www.google.com/maps/search/?api=1&query=" + item.getPosition().latitude + "%2C" + item.getPosition().longitude;
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 
                 startActivity(intent);
+
+
             }
         });
 
