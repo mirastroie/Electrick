@@ -2,6 +2,11 @@
 
 An electric car sharing app.
 
+Screenshots:
+
+<img alt="getstarted" src="https://i.imgur.com/V1iswzv.png" height="400px"/> <img alt="register" src="https://i.imgur.com/3rWRb6N.png" height="400px"/> <img alt="map" src="https://i.imgur.com/wSfSzoJ.png" height="400px"/> <img alt="car" src="https://i.imgur.com/o7e90vt.png" height="400px"/> 
+<img alt="models" src="https://i.imgur.com/4tkXyc4.png" height="400px"/> <img alt="model" src="https://i.imgur.com/7MDDiXW.png" height="400px"/> <img alt="profile" src="https://i.imgur.com/6OnRNFQ.png" height="400px"/>
+
 Functionalities:
 
 - [x] Map screen
