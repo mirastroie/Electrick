@@ -102,7 +102,7 @@ public class ModelDetailFragment extends Fragment {
             public void onClick(View view) {
                 Intent sendIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
 
-                sendIntent.putExtra(Intent.EXTRA_TEXT,"Now available on Electrick: "+model.getBrand() + " " + model.getName()+". "+ model.getOverview()+ ". Get the app: link_to_play_store_or_something_else");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,"Now available on Electrick: "+model.getBrand() + " " + model.getName()+". "+ model.getOverview()+ ". Get the app: https://play.google.com/store/apps/details?id=lt.mediapark.rideshare");
 
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, "Share using"));
