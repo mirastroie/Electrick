@@ -90,7 +90,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         button = (AppCompatButton) getView().findViewById(R.id.buttonLogOut);
         helloMessage = (TextView) getView().findViewById(R.id.helloMessage);
-        helloMessage.setText(String.format("Hello, %s", currentUser.getDisplayName()));
+        helloMessage.setText(String.format("Hello, %s", (currentUser.getDisplayName() != "" && currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "stranger!" )));
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
